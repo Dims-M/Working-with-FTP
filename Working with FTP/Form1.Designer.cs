@@ -35,6 +35,7 @@
             this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.materialRaisedButton3 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +86,7 @@
             this.materialFlatButton1.AutoSize = true;
             this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(498, 359);
+            this.materialFlatButton1.Location = new System.Drawing.Point(575, 362);
             this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButton1.Name = "materialFlatButton1";
@@ -103,7 +104,7 @@
             this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton2.Name = "materialRaisedButton2";
             this.materialRaisedButton2.Primary = true;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(77, 41);
+            this.materialRaisedButton2.Size = new System.Drawing.Size(124, 41);
             this.materialRaisedButton2.TabIndex = 3;
             this.materialRaisedButton2.Text = "Очистить";
             this.materialRaisedButton2.UseVisualStyleBackColor = true;
@@ -115,7 +116,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(12, 270);
+            this.materialLabel1.Location = new System.Drawing.Point(12, 263);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(38, 19);
@@ -127,12 +128,26 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // materialRaisedButton3
+            // 
+            this.materialRaisedButton3.Depth = 0;
+            this.materialRaisedButton3.Location = new System.Drawing.Point(498, 207);
+            this.materialRaisedButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton3.Name = "materialRaisedButton3";
+            this.materialRaisedButton3.Primary = true;
+            this.materialRaisedButton3.Size = new System.Drawing.Size(124, 41);
+            this.materialRaisedButton3.TabIndex = 5;
+            this.materialRaisedButton3.Text = "Просмотреть";
+            this.materialRaisedButton3.UseVisualStyleBackColor = true;
+            this.materialRaisedButton3.Click += new System.EventHandler(this.MaterialRaisedButton3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(583, 410);
+            this.ClientSize = new System.Drawing.Size(649, 410);
+            this.Controls.Add(this.materialRaisedButton3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.materialRaisedButton2);
@@ -157,6 +172,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton3;
     }
 }
 

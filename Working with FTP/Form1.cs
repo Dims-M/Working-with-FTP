@@ -28,7 +28,7 @@ namespace Working_with_FTP
 
         string[] files;
         int count;
-        List<string> myList = new List<string>();
+       static List<string> myList = new List<string>();
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace Working_with_FTP
                     // materialLabel1.Text += "Является директорией, брошенной папкой )))\t\n";
 
                     myList.AddRange(Directory.GetFiles(item, "*.*",SearchOption.AllDirectories)); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
-                    materialLabel1.Text += "\t\n";
+                   
                 }
 
               else  if ((Directory.Exists(item))!= true) // проверяем. Кинули нам папку или отдельный файл
@@ -92,7 +92,8 @@ namespace Working_with_FTP
                     materialLabel1.Text += "\t\n";
                 }
 
-                materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
+              //  materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
+                materialLabel1.Text = ShoyList(myList);
                 #region Старые методы
                 ////Вывод в лог
                 //else if (count != 3 ) 
@@ -176,13 +177,18 @@ namespace Working_with_FTP
             }
 
         }
-
+        //Кнопка просмотра загруженных файлов
+        private void MaterialRaisedButton3_Click(object sender, EventArgs e)
+        {
+            FormViewFile formViewFile = new FormViewFile();
+            formViewFile.Show();
+        }
 
         //Методы!!!!!!!!!!!!!!
 
-         string ShoyList(List<string> myList)
+      public static string ShoyList(List<string> myList, byte coontt = 0)
         {
-            byte count = 0;
+            byte count = coontt; //по умолчанию
             string tempList = "";
 
             foreach (var item in myList)
@@ -196,12 +202,20 @@ namespace Working_with_FTP
 
                 else
                 {
-                    tempList += "Показаны последние 3 файла!!!ы";
+                    tempList += "Показаны последние 3 файла!!! \t\n";
+                    break;
                 }
             }
 
             return tempList;
 
         }
+
+        public static string ShoyList(byte i = 100)
+        {
+            return ShoyList(myList,i);
+        }
+
+
     }
 }
