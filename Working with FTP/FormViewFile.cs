@@ -24,5 +24,15 @@ namespace Working_with_FTP
         {
             Close();
         }
+
+        /// <summary>
+        /// Elfkbnm dct 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MaterialFlatButton2_Click(object sender, EventArgs e)
+        {
+            Form1.DeleteFailSorse();
+        }
     }
 }

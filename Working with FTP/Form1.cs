@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Working_with_FTP
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; // тема. 2 шт
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey500, Primary.BlueGrey900,Primary.BlueGrey500,Accent.LightBlue200,TextShade.WHITE);
-
+            
         }
 
         string[] files;
@@ -31,15 +32,18 @@ namespace Working_with_FTP
        static List<string> myList = new List<string>();
 
 
+        //При загрузке формы
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Pen pen = new Pen(Color.Black);
+            Graphics graphics = panel1.CreateGraphics(); //Обьект для раблты с графикой
+            graphics.DrawRectangle(pen, 0, 0, panel1.Width - 1, panel1.Height - 1); //Рисуем нужную фигуру. В данном случаее пряугольник
         }
 
-        //Cвойства панели
+        //Клик на пнел
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            ShoyGrafifDrod(); 
         }
 
         /// <summary>
@@ -186,6 +190,19 @@ namespace Working_with_FTP
 
         //Методы!!!!!!!!!!!!!!
 
+            /// <summary>
+            /// Очистка листа
+            /// </summary>
+            public static void DeleteFailSorse()
+        {
+            for (int i =0; i<myList.Count; i++)
+            {
+                myList.RemoveRange(0, myList.Count);
+            }
+
+           
+        }
+
       public static string ShoyList(List<string> myList, byte coontt = 0)
         {
             byte count = coontt; //по умолчанию
@@ -256,6 +273,53 @@ namespace Working_with_FTP
            
            // return ((sizeFail / 8)/1024)/1024;
             return sizeFail / 1048576;
+        }
+
+
+        public void ShoyGrafifDrod()
+        {
+            float[] dashes = {2,2,2,2 }; // указываем размер пунктира, растояние и так далее
+            Pen pen = new Pen(Color.Black); // цвет пунктира
+            pen.DashPattern = dashes; // патерн шаблон, маска
+            Graphics graphics = panel1.CreateGraphics(); //Обьект для раблты с графикой
+                                                         //  graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; // зглаживание пунктиров
+
+            //while (true)
+            //{
+            //    graphics.DrawRectangle(pen, 0, 0, panel1.Width - 1, panel1.Height - 1); //Рисуем нужную фигуру. В данном случаее пряугольник
+
+            //}
+            graphics.DrawRectangle(pen, 0, 0, panel1.Width - 1, panel1.Height - 1); //Рисуем нужную фигуру. В данном случаее пряугольник
+        }
+
+        async public void ShoyGrafifDrod2()
+        {
+            {
+                await Task.Run(async () =>
+                {
+                    Pen pen = new Pen(Color.Black, 2);
+                    for (int i = 30; i > 2; i--, await Task.Delay(10)) // настройки скорости пунктиров
+                    {
+                        panel1.CreateGraphics().Clear(SystemColors.Control);
+                        pen.DashPattern = new float[] { 2, i };
+                        panel1.CreateGraphics().DrawRectangle(pen, 1, 1, panel1.Width - 2, panel1.Height - 2);
+
+                        
+                    }
+                });
+
+            }
+        }
+            //Кнопка ок
+            private void MaterialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            // ShoyGrafifDrod();
+            ShoyGrafifDrod2();
+        }
+        //**
+        private void Form1_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
