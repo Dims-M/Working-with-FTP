@@ -25,11 +25,15 @@ namespace Working_with_FTP
 
         }
 
+        string[] files;
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
+        //Cвойства панели
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -42,25 +46,72 @@ namespace Working_with_FTP
         /// <param name="e"></param>
         private void Panel1_DragEnter(object sender, DragEventArgs e)
         {
-
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))  // получаем данные в форме кидаемого Файла с типом дроп
+            {
+                materialLabel2.Text = "Мышь отпусти!! Изверг!!";
+                e.Effect = DragDropEffects.Copy; //Происходит копирование файла
+            }
+            
         }
 
         /// <summary>
-        /// Событие при завершении бропа
+        /// Момент отпускания файла в область переброса
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Panel1_DragDrop(object sender, DragEventArgs e)
         {
+            
+            materialLabel2.Text = "Файл перетащен. Еще перетащить?";
+
+           files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
+
+            int count = 0;
+            foreach (var item in files)
+            {
+                if (count != 3 )
+                {
+                    materialLabel1.Text += item;
+                    count++;
+                    materialLabel1.Text += "\t\n";
+                }
+                   
+                else
+                {
+                    materialLabel1.Text += "Показаны только 3 первых файла";
+                    break;
+                }
+            } 
+        }
+
+        
+        private void Panel1_DragLeave(object sender, EventArgs e)
+        {
+          //  Перетащите файлы
+           
+            materialLabel2.Text = "КУда?? Бросай файлы";
 
         }
 
+        //Кнопка очистить
+        private void MaterialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            materialLabel2.Text = "Перетащите файлы";
+            materialLabel1.Text = "\t\n";
+        }
+
         /// <summary>
-        ///Событие при выходе из зоны дропа
+        /// Кнопка выхода
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Panel1_DragLeave(object sender, EventArgs e)
+        private void MaterialFlatButton1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        //Кнопка лабел 
+        private void MaterialLabel1_Click(object sender, EventArgs e)
         {
 
         }
