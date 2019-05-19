@@ -29,26 +29,44 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AllowDrop = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.Controls.Add(this.materialLabel2);
             this.panel1.Location = new System.Drawing.Point(47, 79);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(445, 169);
             this.panel1.TabIndex = 0;
+            this.panel1.Click += new System.EventHandler(this.Panel1_Click);
             this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.Panel1_DragDrop);
             this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.Panel1_DragEnter);
             this.panel1.DragLeave += new System.EventHandler(this.Panel1_DragLeave);
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.Location = new System.Drawing.Point(92, 74);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(250, 19);
+            this.materialLabel2.TabIndex = 0;
+            this.materialLabel2.Text = "Перетащите файлы или кликните";
+            this.materialLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.materialLabel2.Click += new System.EventHandler(this.MaterialLabel2_Click);
             // 
             // materialRaisedButton1
             // 
@@ -105,19 +123,9 @@
             this.materialLabel1.Text = "ЛОГ";
             this.materialLabel1.Click += new System.EventHandler(this.MaterialLabel1_Click);
             // 
-            // materialLabel2
+            // openFileDialog1
             // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(157, 80);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(148, 19);
-            this.materialLabel2.TabIndex = 0;
-            this.materialLabel2.Text = "Перетащите файлы";
-            this.materialLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -125,11 +133,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(583, 410);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.materialRaisedButton2);
             this.Controls.Add(this.materialFlatButton1);
             this.Controls.Add(this.materialRaisedButton1);
-            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -148,6 +156,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

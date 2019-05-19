@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ComponentAce.Compression.Archiver;
 using ComponentAce.Compression.ZipForge;
 
@@ -410,6 +411,21 @@ namespace util
     public class Method_Drag_and_Drop
     {
         
+        public void Clik_Drag_and_Drop()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog(); //создание обьекта для работы с открытием файла
+            fileDialog.Title = "Укажите файл для загрузки на FTP"; // заголовок окна
+
+            fileDialog.InitialDirectory = @"C:\Users\Dmytriy"; // указываем откуда из какого источника открывать окно выбора 
+
+            //Запуск формы выбора файла 
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+               // materialLabel1.Text += fileDialog.FileName;
+               //materialLabel1.Text += "\t\n";
+            }
+        }
+
         #region Пример кода 
         //public void ReceptionFile()
         //{

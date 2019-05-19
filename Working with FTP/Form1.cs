@@ -28,7 +28,7 @@ namespace Working_with_FTP
 
         string[] files;
         int count;
-        List<string> myList;
+        List<string> myList = new List<string>();
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace Working_with_FTP
 
            files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
 
-            myList = new List<string>();
+           // myList = new List<string>();
            count = 0;
 
             foreach (var item in files)
@@ -129,7 +129,7 @@ namespace Working_with_FTP
         //Кнопка очистить
         private void MaterialRaisedButton2_Click(object sender, EventArgs e)
         {
-            materialLabel2.Text = "Перетащите файлы";
+            materialLabel2.Text = "Перетащите файлы или кликните";
             materialLabel1.Text = "\t\n";
         }
 
@@ -143,12 +143,65 @@ namespace Working_with_FTP
             Close();
         }
 
-        //Кнопка лабел 
+        //Кнопка лабел **
         private void MaterialLabel1_Click(object sender, EventArgs e)
         {
 
         }
 
+        //lДвойной клик на надписи**
+        private void MaterialLabel2_Click(object sender, EventArgs e)
+        {
+           
 
+        }
+
+        //Клик на панели дропа.Выход окна выбора файла
+        private void Panel1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog(); //создание обьекта для работы с открытием файла
+            fileDialog.Title = "Укажите файл для загрузки на FTP"; // заголовок окна
+
+            fileDialog.InitialDirectory = @"C:\Users\Dmytriy"; // указываем откуда из какого источника открывать окно выбора 
+
+            //Запуск формы выбора файла 
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+               // materialLabel1.Text += fileDialog.FileName;
+                myList.Add(fileDialog.FileName);
+
+                materialLabel1.Text = ShoyList(myList);
+               // materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
+                materialLabel1.Text += "\t\n";
+            }
+
+        }
+
+
+        //Методы!!!!!!!!!!!!!!
+
+         string ShoyList(List<string> myList)
+        {
+            byte count = 0;
+            string tempList = "";
+
+            foreach (var item in myList)
+            {
+                if(count != 3)
+                {
+                    tempList += item;
+                    tempList += "\t\n";
+                    count++;
+                }
+
+                else
+                {
+                    tempList += "Показаны последние 3 файла!!!ы";
+                }
+            }
+
+            return tempList;
+
+        }
     }
 }
