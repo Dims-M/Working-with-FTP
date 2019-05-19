@@ -16,6 +16,8 @@ namespace Working_with_FTP
         {
             InitializeComponent();
             materialLabel2.Text += Form1.ShoyList();
+            materialLabel3.Text += Form1.ShoySze();
+            materialLabel4.Text += Form1.ShoyCount(); // Получени количество файлов
         }
 
         private void MaterialFlatButton1_Click(object sender, EventArgs e)

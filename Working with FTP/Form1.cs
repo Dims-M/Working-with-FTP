@@ -211,11 +211,51 @@ namespace Working_with_FTP
 
         }
 
+        /// <summary>
+        /// Вывод списка со значениям по умолчанию
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public static string ShoyList(byte i = 100)
         {
             return ShoyList(myList,i);
         }
 
+        /// <summary>
+        /// Получение количества файлов
+        /// </summary>
+        /// <returns></returns>
+        public static int ShoyCount()
+        {
+            return myList.Count;
+        }
 
+        public static int ShoySze()
+        {
+            //string path = @"C:\apache\hta.txt";
+            //FileInfo fileInf = new FileInfo(path);
+            //if (fileInf.Exists)
+            //{
+            //    Console.WriteLine("Имя файла: {0}", fileInf.Name);
+            //    Console.WriteLine("Время создания: {0}", fileInf.CreationTime);
+            //    Console.WriteLine("Размер: {0}", fileInf.Length);
+            //}
+
+            string pathSorse;
+            FileInfo fileInf2; // = new FileInfo(path);
+            int sizeFail = 0;
+
+            foreach (var tempItem in myList)
+            {
+                pathSorse = tempItem; // полученте пути.
+                fileInf2 = new FileInfo(pathSorse); // обьект для работы с 
+                sizeFail += (int)fileInf2.Length;
+
+            }
+
+           
+           // return ((sizeFail / 8)/1024)/1024;
+            return sizeFail / 1048576;
+        }
     }
 }
