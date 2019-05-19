@@ -11,10 +11,10 @@ using ComponentAce.Compression.ZipForge;
 namespace util
 
 {
-    
-     /// <summary>
-     /// Методы чтения записи текстовых файлов. Отправка текс файлов на фтп
-     /// </summary>
+
+    /// <summary>
+    /// Методы чтения записи текстовых файлов. Отправка текс файлов на фтп
+    /// </summary>
     public class Util
     {
 
@@ -403,5 +403,74 @@ namespace util
         }
 
     }
-}
 
+    /// <summary>
+    /// Пример кода Drag_and_Drop
+    /// </summary>
+    public class Method_Drag_and_Drop
+    {
+        
+        #region Пример кода 
+        //public void ReceptionFile()
+        //{
+
+        //    string[] files = new string[];
+        //    int count;
+        //    List<string> myList;
+        //    // materialLabel2.Text = "Файл перетащен. Еще перетащить?";
+
+        //    files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
+
+        //    myList = new List<string>();
+        //    count = 0;
+
+        //    foreach (var item in files)
+        //    {
+        //        if (Directory.Exists(item)) // проверяем. Кинули нам папку или отдельный файл
+        //        {
+        //            // materialLabel1.Text += "Является директорией, брошенной папкой )))\t\n";
+
+        //            myList.AddRange(Directory.GetFiles(item, "*.*", SearchOption.AllDirectories)); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
+        //            materialLabel1.Text += "\t\n";
+        //        }
+
+        //        else if ((Directory.Exists(item)) != true) // проверяем. Кинули нам папку или отдельный файл
+        //        {
+        //            // materialLabel1.Text += "Является файлом  )))\t\n";
+
+        //            myList.Add(item); //  добавление в лист
+
+        //            //   materialLabel1.Text += string.Join("\t\n",myList); // конвертация листа в стринг и вывод 
+        //            materialLabel1.Text += "\t\n";
+        //        }
+
+        //        materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
+
+        //        #region Старые методы
+        //        ////Вывод в лог
+        //        //else if (count != 3 ) 
+        //        //{
+        //        //    // materialLabel1.Text += "Показаны только 3 первых файла";
+        //        //    //break;
+        //        //    materialLabel1.Text += item;
+        //        //    count++;
+        //        //    materialLabel1.Text += "\t\n";
+        //        //}
+
+        //        //else
+        //        //{
+        //        //    //materialLabel1.Text += item;
+        //        //    //materialLabel1.Text += "\t\n";
+
+        //        //    materialLabel1.Text += "Показаны только 3 первых файла";
+        //        //    break;
+        //        //}
+
+        //        #endregion
+        //    }
+        //}
+        #endregion
+    }
+
+
+}
