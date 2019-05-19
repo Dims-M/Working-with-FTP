@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace Working_with_FTP
         }
 
         string[] files;
+        int count;
+        List<string> myList;
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -66,11 +69,30 @@ namespace Working_with_FTP
 
            files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
 
-            int count = 0;
+            myList = new List<string>();
+           count = 0;
+
             foreach (var item in files)
             {
-                if (count != 3 )
+                if (Directory.Exists(item)) // проверяем. Кинули нам папку или отдельный файл
                 {
+                     materialLabel1.Text += "Является директорией, брошенной папкой )))";
+
+                    myList.AddRange(Directory.GetFiles(item, "*.*",SearchOption.AllDirectories)); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
+                }
+
+                if ((Directory.Exists(item))!= true) // проверяем. Кинули нам папку или отдельный файл
+                {
+                    materialLabel1.Text += "Является директорией, брошенной папкой )))";
+
+                    myList.Add(item); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
+                }
+
+                //Вывод в лог
+                else if (count != 3 ) 
+                {
+                    // materialLabel1.Text += "Показаны только 3 первых файла";
+                    //break;
                     materialLabel1.Text += item;
                     count++;
                     materialLabel1.Text += "\t\n";
@@ -78,10 +100,13 @@ namespace Working_with_FTP
                    
                 else
                 {
+                    //materialLabel1.Text += item;
+                    //materialLabel1.Text += "\t\n";
+
                     materialLabel1.Text += "Показаны только 3 первых файла";
                     break;
                 }
-            } 
+        } 
         }
 
         
