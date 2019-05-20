@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -410,7 +411,48 @@ namespace util
     /// </summary>
     public class Method_Drag_and_Drop
     {
-        
+
+        /// <summary>
+        /// Пример пунктирной линии на панели Drag_and_Drop
+        /// </summary>
+        //public void ShoyGrafifDrod()
+        //{
+        //    float[] dashes = { 2, 2, 2, 2 }; // указываем размер пунктира, растояние и так далее
+        //    Pen pen = new Pen(Color.Black); // цвет пунктира
+        //    pen.DashPattern = dashes; // патерн шаблон, маска
+        //    Graphics graphics = panel1.CreateGraphics(); //Обьект для раблты с графикой
+        //                                                 //  graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; // зглаживание пунктиров
+
+        //    //while (true)
+        //    //{
+        //    //    graphics.DrawRectangle(pen, 0, 0, panel1.Width - 1, panel1.Height - 1); //Рисуем нужную фигуру. В данном случаее пряугольник
+
+        //    //}
+        //    graphics.DrawRectangle(pen, 0, 0, panel1.Width - 1, panel1.Height - 1); //Рисуем нужную фигуру. В данном случаее пряугольник
+        //}
+
+        //async public void ShoyGrafifDrod2()
+        //{
+        //    {
+        //        await Task.Run(async () =>
+        //        {
+        //            Pen pen = new Pen(Color.Black, 2);
+        //            for (int i = 30; i > 2; i--, await Task.Delay(10)) // настройки скорости пунктиров
+        //            {
+        //                panel1.CreateGraphics().Clear(SystemColors.Control);
+        //                pen.DashPattern = new float[] { 2, i };
+        //                panel1.CreateGraphics().DrawRectangle(pen, 1, 1, panel1.Width - 2, panel1.Height - 2);
+
+
+        //            }
+        //        });
+
+        //    }
+        //}
+
+        /// <summary>
+        /// Открытие окна выбора файла для Drag_and_Drop
+        /// </summary>
         public void Clik_Drag_and_Drop()
         {
             OpenFileDialog fileDialog = new OpenFileDialog(); //создание обьекта для работы с открытием файла

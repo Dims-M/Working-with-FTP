@@ -292,20 +292,23 @@ namespace Working_with_FTP
             graphics.DrawRectangle(pen, 0, 0, panel1.Width - 1, panel1.Height - 1); //Рисуем нужную фигуру. В данном случаее пряугольник
         }
 
+        /// <summary>
+        /// Вывод онимащионной рамки.
+        /// </summary>
         async public void ShoyGrafifDrod2()
         {
             {
                 await Task.Run(async () =>
                 {
                     Pen pen = new Pen(Color.Black, 2);
-                    for (int i = 30; i > 2; i--, await Task.Delay(10)) // настройки скорости пунктиров
+                    for (int i = 30; i > 2; i--, await Task.Delay(9)) // настройки скорости пунктиров
                     {
                         panel1.CreateGraphics().Clear(SystemColors.Control);
                         pen.DashPattern = new float[] { 2, i };
                         panel1.CreateGraphics().DrawRectangle(pen, 1, 1, panel1.Width - 2, panel1.Height - 2);
-
-                        
+  
                     }
+
                 });
 
             }
@@ -314,7 +317,9 @@ namespace Working_with_FTP
             private void MaterialRaisedButton1_Click(object sender, EventArgs e)
         {
             // ShoyGrafifDrod();
-            ShoyGrafifDrod2();
+            ShoyGrafifDrod2(); // красивый курсор
+
+            
         }
         //**
         private void Form1_TextChanged(object sender, EventArgs e)
