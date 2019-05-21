@@ -364,7 +364,7 @@ namespace Working_with_FTP
         }
            
         //Работа с прогресс баром
-        public void RabPrpgressBar()
+      async public void RabPrpgressBar()
         {
             int countItemListData =myList.Count; // Количесво элементов в листе
             string path = @"J:\Музыка\Videos\клип";
@@ -387,7 +387,9 @@ namespace Working_with_FTP
             for (int i =0; i< countItemListData; i++)
             {
                 progressBar1.Value++;
+                await Task.Delay(200); // остановка на заданное время
             }
+
             materialLabel1.Text = $"Количество элементо: {countItemListData}";
            // progressBar1.Value++;
 

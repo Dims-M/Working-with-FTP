@@ -150,6 +150,7 @@
             this.progressBar1.Size = new System.Drawing.Size(400, 23);
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Value = 1;
+            this.progressBar1.Visible = false;
             // 
             // Form1
             // 
