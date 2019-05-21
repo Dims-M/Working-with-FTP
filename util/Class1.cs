@@ -531,4 +531,15 @@ namespace util
     }
 
 
+    #region Разные примеры кода
+
+    //Получаем имя файла. 
+    // string[] splitpath = patchFile.Split('/'); //разбиваем по сплиту по слешам
+    // string name = splitpath[splitpath.Length - 1];// берем последниие данные из массива 
+
+    //Место куда сохранить  загруженный файл
+   // string filaSave = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}";
+
+    #endregion
+
 }

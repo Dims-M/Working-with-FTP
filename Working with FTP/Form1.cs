@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -407,14 +408,37 @@ namespace Working_with_FTP
         /// </summary>
         public void RabWebClient()
         {
-           // string patchFile = @"ftp://tesftpmail.ucoz.net/ofd.txt";
-            string patchFile = @"https://cloud.mail.ru/public/2jPT/5B3UCrdHT";
+          // string patchFile = @"ftp://tesftpmail.ucoz.net/ofd.txt";
+            //string patchFile = @"https://cloud.mail.ru/public/2jPT/5B3UCrdHT";
+            string patchFile = @"https://download.virtualbox.org/virtualbox/6.0.8/VirtualBox-6.0.8-130520-Win.exe";
 
-            WebClient wc = new WebClient(); // обьект для рабоой с передачей и подключением с сетью
-            wc.DownloadFile(patchFile, "gtvyer.zip");
+            //Получаем имя файла. 
+            string[] splitpath = patchFile.Split('/'); //разбиваем по сплиту по слешам
+            string name = splitpath[splitpath.Length - 1];// берем последниие данные из массива 
 
+            //Место куда сохранить  загруженный файл
+            string filaSave = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}";
+
+            string fullNmame =filaSave+"/" + name;
+
+            using (WebClient wc = new WebClient()) // обьект для рабоой с передачей и подключением с сетью
+            {
+             materialLabel1.Text = $"Происходит Скачивание файла:{fullNmame}";
+            //Скачиваем файл
+            wc.DownloadFileAsync(new Uri (patchFile), fullNmame);
+
+            }
         }
         
+
+        public void PolochenoeNameUrlString(){
+
+            Regex regex = new Regex("11");
+
+
+        }
+
+
         //Кнопка ок
             private void MaterialRaisedButton1_Click(object sender, EventArgs e)
         {
