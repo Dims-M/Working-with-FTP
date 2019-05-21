@@ -403,8 +403,15 @@ namespace Working_with_FTP
 
         }
 
+      public void  RabPrpgressBarDownloadFile() // запускаем прогрес бар
+        {
+           // materialLabel1.Text = $"Количество элементо: {10}";
+            progressBar1.Visible = true; //Видимость прогресс бара
+            progressBar1.Value++;
+        }
+
         /// <summary>
-        /// Работа с сетью WebClient
+        /// Работа с сетью WebClient скачка файла по прямой ссылки
         /// </summary>
         public void RabWebClient()
         {
@@ -419,13 +426,27 @@ namespace Working_with_FTP
             //Место куда сохранить  загруженный файл
             string filaSave = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}";
 
-            string fullNmame =filaSave+"/" + name;
+            string fullNmame =filaSave+"/" + name; // совмещаем место сохранения и имя файла
 
             using (WebClient wc = new WebClient()) // обьект для рабоой с передачей и подключением с сетью
             {
-             materialLabel1.Text = $"Происходит Скачивание файла:{fullNmame}";
-            //Скачиваем файл
-            wc.DownloadFileAsync(new Uri (patchFile), fullNmame);
+            
+                // событие на изменение загрузки. Передаем в прогрец бар 
+                wc.DownloadProgressChanged += (s, e) => 
+                {
+                    //Узнать размер файла который нужно скачать
+
+
+                    materialLabel1.Text = $"Происходит Скачивание файла:{fullNmame} \t\n" +
+                   $"Скачалось {e.ProgressPercentage}% ({((double)e.BytesReceived / 1048576).ToString("#.#")} МБ)"; // получаем количество загружены мегобайтов
+
+                    progressBar1.Value = e.ProgressPercentage; };
+
+                progressBar1.Visible = true; //Видимость прогресс бара
+                progressBar1.Value++;
+
+                //Скачиваем файл
+                wc.DownloadFileAsync(new Uri (patchFile), fullNmame);
 
             }
         }
@@ -444,7 +465,7 @@ namespace Working_with_FTP
         {
             // ShoyGrafifDrod();
             ShoyGrafifDrod2(); // красивый курсор
-            RabPrpgressBar(); // запускаем прогрес бар
+           // RabPrpgressBar(); // запускаем прогрес бар
 
             RabWebClient();
 
