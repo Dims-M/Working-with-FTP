@@ -36,6 +36,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.materialRaisedButton3 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,12 +143,21 @@
             this.materialRaisedButton3.UseVisualStyleBackColor = true;
             this.materialRaisedButton3.Click += new System.EventHandler(this.MaterialRaisedButton3_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(126, 362);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(400, 23);
+            this.progressBar1.TabIndex = 6;
+            this.progressBar1.Value = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(649, 410);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.materialRaisedButton3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.materialLabel1);
@@ -175,6 +185,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton3;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

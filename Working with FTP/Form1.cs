@@ -68,13 +68,15 @@ namespace Working_with_FTP
         /// <param name="e"></param>
         private void Panel1_DragDrop(object sender, DragEventArgs e)
         {
-            
+
+
+            #region Старые методы. 
             materialLabel2.Text = "Файл перетащен. Еще перетащить?";
 
-           files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
+            files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
 
-           // myList = new List<string>();
-           count = 0;
+            // myList = new List<string>();
+            count = 0;
 
             foreach (var item in files)
             {
@@ -82,22 +84,23 @@ namespace Working_with_FTP
                 {
                     // materialLabel1.Text += "Является директорией, брошенной папкой )))\t\n";
 
-                    myList.AddRange(Directory.GetFiles(item, "*.*",SearchOption.AllDirectories)); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
-                   
+                    myList.AddRange(Directory.GetFiles(item, "*.*", SearchOption.AllDirectories)); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
+
                 }
 
-              else  if ((Directory.Exists(item))!= true) // проверяем. Кинули нам папку или отдельный файл
+                else if ((Directory.Exists(item)) != true) // проверяем. Кинули нам папку или отдельный файл
                 {
-                   // materialLabel1.Text += "Является файлом  )))\t\n";
+                    // materialLabel1.Text += "Является файлом  )))\t\n";
 
                     myList.Add(item); //  добавление в лист
 
-                 //   materialLabel1.Text += string.Join("\t\n",myList); // конвертация листа в стринг и вывод 
+                    //   materialLabel1.Text += string.Join("\t\n",myList); // конвертация листа в стринг и вывод 
                     materialLabel1.Text += "\t\n";
                 }
 
-              //  materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
+                //  materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
                 materialLabel1.Text = ShoyList(myList);
+                #endregion
                 #region Старые методы
                 ////Вывод в лог
                 //else if (count != 3 ) 
@@ -120,9 +123,9 @@ namespace Working_with_FTP
 
                 #endregion
             }
-        }
+         }
 
-        
+
         private void Panel1_DragLeave(object sender, EventArgs e)
         {
           //  Перетащите файлы
@@ -190,6 +193,42 @@ namespace Working_with_FTP
 
         //Методы!!!!!!!!!!!!!!
 
+
+        // НЕ РАБОТАЕТ
+        public void PolucheniListaDate()
+        {
+        //    materialLabel2.Text = "Файл перетащен. Еще перетащить?";
+
+        //    files = (string[])e.Data.GetData(DataFormats.FileDrop); // Передаем файл в с отрибутом дроп. Записываем в мссив строк с преодрозованием к массиву
+
+        //    // myList = new List<string>();
+        //    count = 0;
+
+        //    foreach (var item in files)
+        //    {
+        //        if (Directory.Exists(item)) // проверяем. Кинули нам папку или отдельный файл
+        //        {
+        //            // materialLabel1.Text += "Является директорией, брошенной папкой )))\t\n";
+
+        //            myList.AddRange(Directory.GetFiles(item, "*.*", SearchOption.AllDirectories)); // добавляем в лист пути к файлам из папки.Будуд добавленны все файлы по маске bp dct gjlrfnjkjujd 
+
+        //        }
+
+        //        else if ((Directory.Exists(item)) != true) // проверяем. Кинули нам папку или отдельный файл
+        //        {
+        //            // materialLabel1.Text += "Является файлом  )))\t\n";
+
+        //            myList.Add(item); //  добавление в лист
+
+        //            //   materialLabel1.Text += string.Join("\t\n",myList); // конвертация листа в стринг и вывод 
+        //            materialLabel1.Text += "\t\n";
+        //        }
+
+        //        //  materialLabel1.Text += string.Join("\t\n", myList); // конвертация листа в стринг и вывод 
+        //        materialLabel1.Text = ShoyList(myList);
+        //    }
+        }
+
             /// <summary>
             /// Очистка листа
             /// </summary>
@@ -202,7 +241,12 @@ namespace Working_with_FTP
 
            
         }
-
+        /// <summary>
+        /// Метод для вывода содержимого листа первые 3 значения
+        /// </summary>
+        /// <param name="myList"></param>
+        /// <param name="coontt"></param>
+        /// <returns></returns>
       public static string ShoyList(List<string> myList, byte coontt = 0)
         {
             byte count = coontt; //по умолчанию
@@ -246,7 +290,10 @@ namespace Working_with_FTP
         {
             return myList.Count;
         }
-
+        /// <summary>
+        /// Метод для получения размера файлов в мегобайт
+        /// </summary>
+        /// <returns></returns>
         public static int ShoySze()
         {
             //string path = @"C:\apache\hta.txt";
@@ -275,7 +322,9 @@ namespace Working_with_FTP
             return sizeFail / 1048576;
         }
 
-
+        /// <summary>
+        /// Статический пунктр для поле 
+        /// </summary>
         public void ShoyGrafifDrod()
         {
             float[] dashes = {2,2,2,2 }; // указываем размер пунктира, растояние и так далее
@@ -313,13 +362,47 @@ namespace Working_with_FTP
 
             }
         }
-            //Кнопка ок
+           
+        //Работа с прогресс баром
+        public void RabPrpgressBar()
+        {
+            int countItemListData =myList.Count; // Количесво элементов в листе
+            string path = @"J:\Музыка\Videos\клип";
+            string path1 = @"C:\Users\Dmytriy\Downloads\temp";
+            string pathList = @"C:\Users\Dmytriy\Downloads\temp";
+
+            // string[] files = Directory.GetFiles(pathList, "*"); // получаем имена и пути к файлам
+            string[] files = new string[countItemListData+1];
+
+            for (int i =0; i < countItemListData; i++ )
+            {
+              files[i] = myList[i];
+            }
+
+            progressBar1.Maximum = 0;
+            progressBar1.Maximum = countItemListData; //указываем максимаьную длину прогресса бара от длины массива
+
+            progressBar1.Visible = true; //Видимость прогресс бара
+
+            for (int i =0; i< countItemListData; i++)
+            {
+                progressBar1.Value++;
+            }
+            materialLabel1.Text = $"Количество элементо: {countItemListData}";
+           // progressBar1.Value++;
+
+        }
+
+        
+        //Кнопка ок
             private void MaterialRaisedButton1_Click(object sender, EventArgs e)
         {
             // ShoyGrafifDrod();
             ShoyGrafifDrod2(); // красивый курсор
+            RabPrpgressBar(); // запускаем прогрес бар
 
-            
+
+
         }
         //**
         private void Form1_TextChanged(object sender, EventArgs e)
