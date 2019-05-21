@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -362,9 +363,11 @@ namespace Working_with_FTP
 
             }
         }
-           
-        //Работа с прогресс баром
-      async public void RabPrpgressBar()
+
+        /// <summary>
+        /// Работа с прогресс баром.
+        /// </summary>
+        async public void RabPrpgressBar()
         {
             int countItemListData =myList.Count; // Количесво элементов в листе
             string path = @"J:\Музыка\Videos\клип";
@@ -382,7 +385,11 @@ namespace Working_with_FTP
             progressBar1.Maximum = 0;
             progressBar1.Maximum = countItemListData; //указываем максимаьную длину прогресса бара от длины массива
 
-            progressBar1.Visible = true; //Видимость прогресс бара
+            if (countItemListData !=0) 
+            {
+                progressBar1.Visible = true; //Видимость прогресс бара
+            }
+            
 
             for (int i =0; i< countItemListData; i++)
             {
@@ -395,6 +402,18 @@ namespace Working_with_FTP
 
         }
 
+        /// <summary>
+        /// Работа с сетью WebClient
+        /// </summary>
+        public void RabWebClient()
+        {
+           // string patchFile = @"ftp://tesftpmail.ucoz.net/ofd.txt";
+            string patchFile = @"https://cloud.mail.ru/public/2jPT/5B3UCrdHT";
+
+            WebClient wc = new WebClient(); // обьект для рабоой с передачей и подключением с сетью
+            wc.DownloadFile(patchFile, "gtvyer.zip");
+
+        }
         
         //Кнопка ок
             private void MaterialRaisedButton1_Click(object sender, EventArgs e)
@@ -403,7 +422,7 @@ namespace Working_with_FTP
             ShoyGrafifDrod2(); // красивый курсор
             RabPrpgressBar(); // запускаем прогрес бар
 
-
+            RabWebClient();
 
         }
         //**

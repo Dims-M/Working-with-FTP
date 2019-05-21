@@ -33,6 +33,7 @@ namespace Working_with_FTP
         private void MaterialFlatButton2_Click(object sender, EventArgs e)
         {
             Form1.DeleteFailSorse();
+            materialLabel2.Text = "Очищенно.";
         }
     }
 }
