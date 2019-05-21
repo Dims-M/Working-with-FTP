@@ -416,7 +416,7 @@ namespace Working_with_FTP
         public void RabWebClient()
         {
           // string patchFile = @"ftp://tesftpmail.ucoz.net/ofd.txt";
-            //string patchFile = @"https://cloud.mail.ru/public/2jPT/5B3UCrdHT";
+            string patchFile2 = @"https://cloud.mail.ru/public/2jPT/5B3UCrdHT";
             string patchFile = @"https://download.virtualbox.org/virtualbox/6.0.8/VirtualBox-6.0.8-130520-Win.exe";
 
             //Получаем имя файла. 
@@ -430,15 +430,15 @@ namespace Working_with_FTP
 
             using (WebClient wc = new WebClient()) // обьект для рабоой с передачей и подключением с сетью
             {
-            
+                //Узнать размер файла который нужно скачать
+                wc.OpenRead(patchFile);
+                string size =(Convert.ToDouble(wc.ResponseHeaders["Content-Length"])/ 1048576).ToString("#.#"); // получаем количество загружены мегобайтов
+
                 // событие на изменение загрузки. Передаем в прогрец бар 
                 wc.DownloadProgressChanged += (s, e) => 
-                {
-                    //Узнать размер файла который нужно скачать
-
-
+                {  
                     materialLabel1.Text = $"Происходит Скачивание файла:{fullNmame} \t\n" +
-                   $"Скачалось {e.ProgressPercentage}% ({((double)e.BytesReceived / 1048576).ToString("#.#")} МБ)"; // получаем количество загружены мегобайтов
+                   $"Скачалось из{size} по {e.ProgressPercentage}% ({((double)e.BytesReceived / 1048576).ToString("#.#")} МБ)"; // получаем количество загружены мегобайтов
 
                     progressBar1.Value = e.ProgressPercentage; };
 
@@ -467,7 +467,7 @@ namespace Working_with_FTP
             ShoyGrafifDrod2(); // красивый курсор
            // RabPrpgressBar(); // запускаем прогрес бар
 
-            RabWebClient();
+            RabWebClient(); //запуск скачки по прямой ссылки
 
         }
         //**
