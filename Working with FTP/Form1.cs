@@ -13,6 +13,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using util;
+
 
 namespace Working_with_FTP
 {
@@ -33,6 +35,7 @@ namespace Working_with_FTP
         int count;
        static List<string> myList = new List<string>();
 
+        Util MyUtil = new Util();
 
         //При загрузке формы
         private void Form1_Load(object sender, EventArgs e)
@@ -459,15 +462,30 @@ namespace Working_with_FTP
 
         }
 
+         void OtpravkaFail(string patchData)
+        {
+            MyUtil = new Util(); // обьект для работы с отаправкой и архивацие файла.
+            //Место куда сохранить  загруженный файл
+            string filaSave = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}";
+            // архивация файла 
+            util.ZipFilesByMask.ArhivPathFail("null.txt", "filaSave");
+
+            MyUtil.arvihBDSParams(patchData); // отправка файла. с параметром местонахожденияфайла
+
+        }
 
         //Кнопка ок
             private void MaterialRaisedButton1_Click(object sender, EventArgs e)
         {
+            var ListData = new List<string>(myList);
             // ShoyGrafifDrod();
             ShoyGrafifDrod2(); // красивый курсор
-           // RabPrpgressBar(); // запускаем прогрес бар
+                               // RabPrpgressBar(); // запускаем прогрес бар
 
-            RabWebClient(); //запуск скачки по прямой ссылки
+            // RabWebClient(); //запуск скачки по прямой ссылки
+
+            //Отправка срезу несколько файлов на фтп
+          MyUtil.ArvihBDSParamsMassif(ListData);
 
         }
         //**

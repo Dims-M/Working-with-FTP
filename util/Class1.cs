@@ -124,6 +124,44 @@ namespace util
 
         }
 
+        /// <summary>
+        /// Отправка 1 файла на сервак 
+        /// </summary>
+        /// <param name="_pathBD"></param>
+        public void arvihBDSParams(string _pathBD)
+        {
+            string adresFtp = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
+            string myLogin = @"iskan";
+            string myPass = @"6350025";
+            string pathBD = _pathBD;
+            // string pathBD = @"C:\BETRADE2\btrade.db3";
+
+            Console.WriteLine("Запуск архивирования БД товаров");
+
+            UploadFile(adresFtp, pathBD, myLogin, myPass);
+            Console.WriteLine("....*****....");
+            Console.ReadKey();
+        }
+
+        public void ArvihBDSParamsMassif(List<string> _pathBD)
+        {
+            string adresFtp = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
+            string myLogin = @"iskan";
+            string myPass = @"6350025";
+            //string[] pathBD = _pathBD;
+            // string pathBD = @"C:\BETRADE2\btrade.db3";
+
+            //Console.WriteLine("Запуск архивирования БД товаров");
+
+            foreach (var itemMass in _pathBD)
+            {
+                UploadFile(adresFtp, itemMass.ToString(), myLogin, myPass);
+            }
+
+           // UploadFile(adresFtp, pathBD, myLogin, myPass);
+           // Console.WriteLine("....*****....");
+            //Console.ReadKey();
+        }
 
         //метод выбора нужного файла через окно выбора
         /// <summary>
