@@ -136,14 +136,14 @@ namespace util
             string pathBD = _pathBD;
             // string pathBD = @"C:\BETRADE2\btrade.db3";
 
-            Console.WriteLine("Запуск архивирования БД товаров");
+          //  Console.WriteLine("Запуск архивирования БД товаров");
 
             UploadFile(adresFtp, pathBD, myLogin, myPass);
-            Console.WriteLine("....*****....");
-            Console.ReadKey();
+           // Console.WriteLine("....*****....");
+           // Console.ReadKey();
         }
 
-        public void ArvihBDSParamsMassif(List<string> _pathBD)
+      async  public void ArvihBDSParamsMassif(List<string> _pathBD)
         {
             string adresFtp = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
             string myLogin = @"iskan";
@@ -155,7 +155,7 @@ namespace util
 
             foreach (var itemMass in _pathBD)
             {
-                UploadFile(adresFtp, itemMass.ToString(), myLogin, myPass);
+                 UploadFile(adresFtp, itemMass.ToString(), myLogin, myPass);
             }
 
            // UploadFile(adresFtp, pathBD, myLogin, myPass);

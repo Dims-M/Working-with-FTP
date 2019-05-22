@@ -406,7 +406,34 @@ namespace Working_with_FTP
 
         }
 
-      public void  RabPrpgressBarDownloadFile() // запускаем прогрес бар
+        async public void RabPrpgressBarParams( List<string> list)
+        {
+            int countItemListData = list.Count; // Количесво элементов в листе
+           
+            progressBar1.Maximum = 0;
+            progressBar1.Maximum = countItemListData; //указываем максимаьную длину прогресса бара от длины массива
+
+            if (countItemListData != 0)
+            {
+                
+                progressBar1.Visible = true; //Видимость прогресс бара
+            }
+
+
+            for (int i = 0; i < countItemListData; i++)
+            {
+                MyUtil.arvihBDSParams(list[i]);
+                progressBar1.Value++;
+
+              //  await Task.Delay(200); // остановка на заданное время
+            }
+
+            materialLabel1.Text = $"Отправленно элементов: {countItemListData}";
+            // progressBar1.Value++;
+
+        }
+
+        public void  RabPrpgressBarDownloadFile() // запускаем прогрес бар
         {
            // materialLabel1.Text = $"Количество элементо: {10}";
             progressBar1.Visible = true; //Видимость прогресс бара
@@ -480,12 +507,16 @@ namespace Working_with_FTP
             var ListData = new List<string>(myList);
             // ShoyGrafifDrod();
             ShoyGrafifDrod2(); // красивый курсор
-                               // RabPrpgressBar(); // запускаем прогрес бар
+            // RabPrpgressBar(); // запускаем прогрес бар
 
             // RabWebClient(); //запуск скачки по прямой ссылки
+            progressBar1.Maximum = ListData.Count; //указываем максимаьную длину прогресса бара от длины массива
 
             //Отправка срезу несколько файлов на фтп
-          MyUtil.ArvihBDSParamsMassif(ListData);
+            //MyUtil.ArvihBDSParamsMassif(ListData);
+
+            //Отправка файла с работой прогресс бара
+            RabPrpgressBarParams(ListData);
 
         }
         //**
