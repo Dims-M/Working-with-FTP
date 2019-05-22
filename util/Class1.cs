@@ -167,6 +167,19 @@ namespace util
             //Console.ReadKey();
         }
 
+        /// <summary>
+        /// Получаем имя файл с разширением из строки 
+        /// </summary>
+        /// <param name="stringPath"></param>
+        /// <returns></returns>
+        public string GetNameIsFail(string stringPath)
+        {
+            //Получаем имя файла. 
+             string[] splitpath = stringPath.Split(' '); //разбиваем по сплиту по слешам
+             string name = splitpath[splitpath.Length - 1];// берем последниие данные из массива 
+             return name;
+        }
+
         //Получение списка файлов на FTP по умолчанию
         public List<string> Getting_List_Files()
         {
@@ -214,6 +227,99 @@ namespace util
             return listDataFtp; //возращем лист.
         }
 
+        /// <summary>
+        /// Скачивание файлов с фтп
+        /// </summary>
+        public void DownloadFileFtp()
+        {
+            const string adresFtp = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
+            const string myLogin = @"iskan";
+            const string myPass = @"6350025";
+
+            string filaSave = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"; // место для сохранения файлов
+
+            //Получаем имя файла. 
+            // string[] splitpath = patchFile.Split('/'); //разбиваем по сплиту по слешам
+            // string name = splitpath[splitpath.Length - 1];// берем последниие данные из массива 
+
+            // Создаем объект FtpWebRequest
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(adresFtp);
+
+            //Устанавливаем лог и пароль
+            request.Credentials = new NetworkCredential(myLogin, myPass);
+
+            // устанавливаем метод на загрузку файлов
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            // получаем ответ от сервера в виде объекта FtpWebResponse
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+
+                // получаем поток ответа
+                Stream responseStream = response.GetResponseStream();
+
+                // сохраняем файл в дисковой системе
+                // создаем поток для сохранения файла
+                FileStream fs = new FileStream("newTest.txt", FileMode.Create);
+
+                //Буфер для считываемых данных
+                byte[] buffer = new byte[64];
+                int size = 0;
+
+                while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    fs.Write(buffer, 0, size);
+                }
+
+            }
+        }
+
+        public void DownloadFileFtpS_fTP(string namePath)
+        {
+             string adresFtp1 = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
+           string namePathFail = adresFtp1 + namePath;
+
+            const string myLogin = @"iskan";
+            const string myPass = @"6350025";
+
+            string filaSave = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"; // место для сохранения файлов
+
+            //Получаем имя файла. 
+            // string[] splitpath = patchFile.Split('/'); //разбиваем по сплиту по слешам
+            // string name = splitpath[splitpath.Length - 1];// берем последниие данные из массива 
+
+            // Создаем объект FtpWebRequest
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(namePathFail);
+
+            //Устанавливаем лог и пароль
+            request.Credentials = new NetworkCredential(myLogin, myPass);
+
+            // устанавливаем метод на загрузку файлов
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            // получаем ответ от сервера в виде объекта FtpWebResponse
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+
+                // получаем поток ответа
+                Stream responseStream = response.GetResponseStream();
+
+                // сохраняем файл в дисковой системе
+                // создаем поток для сохранения файла
+                FileStream fs = new FileStream(filaSave +"\\"+ namePath, FileMode.Create);
+
+                //Буфер для считываемых данных
+                byte[] buffer = new byte[64];
+                int size = 0;
+
+                while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    fs.Write(buffer, 0, size);
+                }
+
+            }
+
+        }
 
         //метод выбора нужного файла через окно выбора
         /// <summary>

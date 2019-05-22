@@ -40,7 +40,7 @@ namespace Working_with_FTP
         //Просmотреть файлы на сервере.
         private void MaterialFlatButton3_Click(object sender, EventArgs e)
         {
-            GetFilFtp();
+            GeFilFtp(); // получение списка файлов
         }
 
 
@@ -49,7 +49,7 @@ namespace Working_with_FTP
         /// <summary>
         /// Получение списка файлов с фтп
         /// </summary>
-        void GetFilFtp()
+        List<string> GeFilFtp()
         {
             util.Util MyUtil = new util.Util(); // обьект для работы с фтп
 
@@ -64,6 +64,37 @@ namespace Working_with_FTP
             }
             materialLabel2.Text = tempList;
             materialLabel4.Text = listFileData.Count().ToString();
+
+            return listFileData;
+        }
+
+        void DownloadFile()
+            {
+         util.Util MyUtil = new util.Util(); // обьект для работы с фтп
+
+        var temp = GeFilFtp(); // получение списка файлов с фтп
+        string tenmListFail = "Cjlth;bvjt \t\n";
+
+        string temFailList = "";
+            // MyUtil.ArvihBDSParamsMassif(temp);
+
+            foreach (var tempNameFiles in temp)
+            {
+                tenmListFail += temFailList;
+                tenmListFail += "\t\n";
+
+                temFailList = MyUtil.GetNameIsFail(tempNameFiles);
+
+                MyUtil.DownloadFileFtpS_fTP(temFailList);
+            }
+    materialLabel2.Text = tenmListFail;
+            }
+
+
+        //Кнопка Скачивание файлов 
+        private void MaterialFlatButton4_Click(object sender, EventArgs e)
+        {
+            DownloadFile();
         }
     }
 }

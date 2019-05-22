@@ -36,6 +36,7 @@
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialFlatButton2 = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialFlatButton3 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialFlatButton4 = new MaterialSkin.Controls.MaterialFlatButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,11 +162,28 @@
             this.materialFlatButton3.UseVisualStyleBackColor = true;
             this.materialFlatButton3.Click += new System.EventHandler(this.MaterialFlatButton3_Click);
             // 
+            // materialFlatButton4
+            // 
+            this.materialFlatButton4.AutoSize = true;
+            this.materialFlatButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButton4.Depth = 0;
+            this.materialFlatButton4.Location = new System.Drawing.Point(583, 528);
+            this.materialFlatButton4.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.materialFlatButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButton4.Name = "materialFlatButton4";
+            this.materialFlatButton4.Primary = false;
+            this.materialFlatButton4.Size = new System.Drawing.Size(160, 36);
+            this.materialFlatButton4.TabIndex = 5;
+            this.materialFlatButton4.Text = "Скачать файлы";
+            this.materialFlatButton4.UseVisualStyleBackColor = true;
+            this.materialFlatButton4.Click += new System.EventHandler(this.MaterialFlatButton4_Click);
+            // 
             // FormViewFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 558);
+            this.Controls.Add(this.materialFlatButton4);
             this.Controls.Add(this.materialFlatButton3);
             this.Controls.Add(this.materialFlatButton2);
             this.Controls.Add(this.materialFlatButton1);
@@ -192,5 +210,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton2;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton3;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton4;
     }
 }
