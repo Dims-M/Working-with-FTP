@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Working_with_FTP
 {
     public partial class FormViewFile : Form
@@ -34,6 +35,35 @@ namespace Working_with_FTP
         {
             Form1.DeleteFailSorse();
             materialLabel2.Text = "Очищенно.";
+        }
+
+        //Просmотреть файлы на сервере.
+        private void MaterialFlatButton3_Click(object sender, EventArgs e)
+        {
+            GetFilFtp();
+        }
+
+
+        //МЕТОДЫ
+
+        /// <summary>
+        /// Получение списка файлов с фтп
+        /// </summary>
+        void GetFilFtp()
+        {
+            util.Util MyUtil = new util.Util(); // обьект для работы с фтп
+
+            string tempList = "Содержимое фтр \t\n";
+
+            var listFileData = MyUtil.Getting_List_Files(); //получаем список файлов с фтп
+
+            foreach (var itemElementFileFtp in listFileData)
+            {
+                tempList += itemElementFileFtp;
+                tempList += "\t\n";
+            }
+            materialLabel2.Text = tempList;
+            materialLabel4.Text = listFileData.Count().ToString();
         }
     }
 }

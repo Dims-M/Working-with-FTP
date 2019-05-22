@@ -143,6 +143,10 @@ namespace util
            // Console.ReadKey();
         }
 
+        /// <summary>
+        /// Отправка нескольких файлов с помощью Листа
+        /// </summary>
+        /// <param name="_pathBD"></param>
       async  public void ArvihBDSParamsMassif(List<string> _pathBD)
         {
             string adresFtp = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
@@ -162,6 +166,54 @@ namespace util
            // Console.WriteLine("....*****....");
             //Console.ReadKey();
         }
+
+        //Получение списка файлов на FTP по умолчанию
+        public List<string> Getting_List_Files()
+        {
+            string adresFtp = @"ftp://kassa16.ru/Alar/Oktyabrskaya23/";
+            string myLogin = @"iskan";
+            string myPass = @"6350025";
+
+            //Создаем подключение к серверу 
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(adresFtp);
+
+            //Устанавливаем лог и пароль
+            request.Credentials = new NetworkCredential(myLogin, myPass);
+
+            //Устанавливаем какой нужен метод ждя работы с фтп
+            request.Method = WebRequestMethods.Ftp.ListDirectoryDetails; //Получаем список файлов с фтп
+
+            //метод ответа // получаем ответ от сервера в виде объекта FtpWebResponse
+            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+            //Поток для ответа с сервера // получаем поток ответа 
+            Stream responseStream = response.GetResponseStream();
+
+            //Чтение потока
+            StreamReader reader = new StreamReader(responseStream);
+
+            List<string> listDataFtp = new List<string>(); // хранение списка файлов
+
+            string line;
+
+            while((line = reader.ReadLine()) != null)
+            {
+                listDataFtp.Add(line); // добавляем в список.
+            }
+
+           // listDataFtp.Add(reader.ReadToEnd()); // добавляем в список.
+
+            //Console.WriteLine(reader.ReadToEnd());
+
+            //Закрываем соединеие и потоки
+            reader.Close();
+            responseStream.Close();
+            response.Close();
+            // Console.Read();
+
+            return listDataFtp; //возращем лист.
+        }
+
 
         //метод выбора нужного файла через окно выбора
         /// <summary>
@@ -310,7 +362,9 @@ namespace util
 
     }
 
-
+    /// <summary>
+    /// Класс для работы с архиваторами..
+    /// </summary>
     public class ZipFilesByMask
     {
         private static string pathArhivHille = @"c:\1\HiddenFolder";
@@ -394,7 +448,7 @@ namespace util
         }
 
         /// <summary>
-        /// Распаковка архива
+        /// Распаковка архива в папку по умолчанию
         /// </summary>
         public static void RaspakovkaArhiva()
         {

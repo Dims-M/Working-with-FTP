@@ -513,7 +513,7 @@ namespace Working_with_FTP
             progressBar1.Maximum = ListData.Count; //указываем максимаьную длину прогресса бара от длины массива
 
             //Отправка срезу несколько файлов на фтп
-            //MyUtil.ArvihBDSParamsMassif(ListData);
+           // MyUtil.ArvihBDSParamsMassif(ListData);
 
             //Отправка файла с работой прогресс бара
             RabPrpgressBarParams(ListData);
